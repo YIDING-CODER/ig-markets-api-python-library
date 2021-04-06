@@ -623,11 +623,11 @@ class IGService:
         else:
             raise IGException(response.text)
 
-    def update_open_position(self, limit_level, stop_level, deal_id, session=None):
+    def update_open_position(self, limit_level, stop_level, deal_id,guaranteed_stop, session=None):
         """Updates an OTC position"""
         # TODO: Update to v2 (adds support for trailing stops)
         version = "1"
-        params = {"limitLevel": limit_level, "stopLevel": stop_level}
+        params = {"limitLevel": limit_level, "stopLevel": stop_level,"guaranteedStop":guaranteed_stop}
         url_params = {"deal_id": deal_id}
         endpoint = "/positions/otc/{deal_id}".format(**url_params)
         action = "update"
